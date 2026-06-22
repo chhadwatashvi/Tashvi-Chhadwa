@@ -73,7 +73,7 @@ export const SOCIAL_MEDIA_GRID: SocialMediaItem[] = [
     type: "instagram",
     title: "Organic Rhythm Reel",
     subtitle: "Reaching 45K views via warm, textured aesthetic storytelling.",
-    image: "/src/assets/images/campaign_showcase_1_1782102995436.jpg",
+    image: "/images/campaign_showcase_1_1782102995436.jpg",
     frameStyle: "phone",
     aspectRatio: "9:16"
   },
@@ -82,7 +82,7 @@ export const SOCIAL_MEDIA_GRID: SocialMediaItem[] = [
     type: "linkedin",
     title: "Mindset Deconstruction",
     subtitle: "A structured carousel detailing marketing psychology. 2.4k shares.",
-    image: "/src/assets/images/campaign_showcase_2_1782103011672.jpg",
+    image: "/images/campaign_showcase_2_1782103011672.jpg",
     frameStyle: "phone",
     aspectRatio: "9:16"
   },
@@ -91,7 +91,7 @@ export const SOCIAL_MEDIA_GRID: SocialMediaItem[] = [
     type: "campaign-showcase",
     title: "Vespera Skincare Launch",
     subtitle: "Coordinating a luxury product launch utilizing heavy shadows and linen textures.",
-    image: "/src/assets/images/campaign_showcase_1_1782102995436.jpg",
+    image: "/images/campaign_showcase_1_1782102995436.jpg",
     frameStyle: "large-showcase",
     aspectRatio: "16:10"
   },
@@ -100,7 +100,7 @@ export const SOCIAL_MEDIA_GRID: SocialMediaItem[] = [
     type: "carousel",
     title: "Visual Hierarchy Guide",
     subtitle: "Educational Instagram slide decks with an 8.4% engagement rate.",
-    image: "/src/assets/images/campaign_showcase_2_1782103011672.jpg",
+    image: "/images/campaign_showcase_2_1782103011672.jpg",
     frameStyle: "laptop",
     aspectRatio: "16:10"
   },
@@ -109,7 +109,7 @@ export const SOCIAL_MEDIA_GRID: SocialMediaItem[] = [
     type: "video",
     title: "Brand Auditing Framework",
     subtitle: "Explaining strategic positioning on-camera for aspiring creative leads.",
-    image: "/src/assets/images/marketer_portrait_1782102978826.jpg",
+    image: "/images/marketer_portrait_1782102978826.jpg",
     frameStyle: "phone",
     aspectRatio: "9:16"
   }

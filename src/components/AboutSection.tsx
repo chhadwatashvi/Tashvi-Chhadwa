@@ -36,7 +36,7 @@ export default function AboutSection() {
           <div className="lg:col-span-5 space-y-10 text-left" id="about-left-side">
             <div className="relative group overflow-hidden rounded-[2rem] bg-warm-clay/30 aspect-[4/5] border border-warm-clay/40">
               <img
-                src="/src/assets/images/marketer_portrait_1782102978826.jpg"
+                src="/images/marketer_portrait_1782102978826.jpg"
                 alt="Tashvi Chhadwa Visual Workspace"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover grayscale opacity-90 group-hover:scale-105 group-hover:grayscale-0 transition-all duration-700"
