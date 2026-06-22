@@ -1,0 +1,6 @@
+{
+  "name": "Creative Marketing Portfolio",
+  "description": "A premium editorial-style personal marketing portfolio and strategic showcase.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

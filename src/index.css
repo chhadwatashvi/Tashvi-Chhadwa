@@ -1,0 +1,63 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=JetBrains+Mono:wght@300;400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif: "Cormorant Garamond", "Playfair Display", "Georgia", serif;
+  --font-sans: "Plus Jakarta Sans", "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  
+  --color-warm-beige: #FDFBF7;
+  --color-warm-ivory: #FDFBF7;
+  --color-warm-clay: #D9D1C1;
+  --color-dark-charcoal: #2D2D2D;
+  --color-mid-tint: #8A7E6B;
+  --color-soft-terracotta: #A69984;
+  --color-muted-olive: #9E927F;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-warm-beige);
+    color: var(--color-dark-charcoal);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+}
+
+/* Custom fade up styles for pure css fallback/reveals */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal-on-scroll.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Custom organic doodle animations, fine lines and layouts */
+@keyframes slow-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(3deg);
+  }
+}
+
+.animate-float-slow {
+  animation: slow-float 8s ease-in-out infinite;
+}
+
+.animate-float-delayed {
+  animation: slow-float 10s ease-in-out infinite;
+  animation-delay: 2s;
+}
+
+/* Magazine paper cutout texture */
+.paper-texture {
+  background-image: radial-gradient(#1e1c1808 1px, transparent 0);
+  background-size: 16px 16px;
+}
+
