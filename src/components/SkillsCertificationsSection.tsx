@@ -1,8 +1,20 @@
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Award, ShieldCheck, CheckCircle2, Bookmark } from 'lucide-react';
 import { SKILLS, CERTIFICATIONS } from '../data';
 
 export default function SkillsCertificationsSection() {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
+
+  useEffect(() => {
+    if (isHovered) return;
+    const interval = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % CERTIFICATIONS.length);
+    }, 3500);
+    return () => clearInterval(interval);
+  }, [isHovered]);
+
   return (
     <section
       id="skills"
@@ -62,75 +74,109 @@ export default function SkillsCertificationsSection() {
               </h3>
             </div>
 
-            {/* Simulated Stacked Cards Layer */}
-            <div className="relative min-h-[360px] flex items-center justify-center p-4">
+            {/* Automated Animated Stacked Cards Layer */}
+            <div 
+              className="relative min-h-[380px] flex flex-col items-center justify-center p-4"
+              onMouseEnter={() => setIsHovered(true)}
+              onMouseLeave={() => setIsHovered(false)}
+            >
               <div className="absolute inset-0 bg-transparent pointer-events-none"></div>
 
-              {CERTIFICATIONS.map((cert, index) => {
-                // Stack translations & rotation angles to replicate Sydney Lim's stacked layouts
-                const rotations = [-4, 1, 5];
-                const translationsY = [0, 16, 32];
-                const scale = 0.94 + index * 0.03;
-                const rotation = rotations[index % rotations.length];
-                const Y = translationsY[index % translationsY.length];
+              <div className="relative w-full max-w-[340px] h-[280px] flex items-center justify-center">
+                {CERTIFICATIONS.map((cert, index) => {
+                  const offset = (index - activeIndex + CERTIFICATIONS.length) % CERTIFICATIONS.length;
+                  const isTop = offset === 0;
 
-                return (
-                  <motion.div
-                    key={index}
-                    style={{
-                      zIndex: index + 10,
-                      transformOrigin: 'bottom center',
-                    }}
-                    initial={{ opacity: 0, y: 50, rotate: 0 }}
-                    animate={{
-                      opacity: 1,
-                      y: Y,
-                      rotate: rotation,
-                      scale: scale,
-                    }}
-                    whileHover={{
-                      y: Y - 25,
-                      rotate: index === 0 ? -8 : index === 1 ? 0 : 8,
-                      scale: scale + 0.04,
-                      zIndex: 40,
-                    }}
-                    transition={{
-                      type: 'spring',
-                      stiffness: 260,
-                      damping: 20,
-                    }}
-                    className="absolute w-full max-w-[340px] aspect-[4/3] bg-warm-ivory p-6 rounded-2xl border border-warm-clay/80 shadow-md flex flex-col justify-between"
-                  >
-                    {/* Header */}
-                    <div className="flex justify-between items-start">
-                      <div className="w-10 h-10 rounded-full flex items-center justify-center bg-dark-charcoal/5 text-dark-charcoal border border-dark-charcoal/10">
-                        <ShieldCheck className="w-5 h-5 text-soft-terracotta" />
+                  // Dynamic positions based on current offset in the stack
+                  const rotations = [0, 4, -4];
+                  const translationsY = [0, 16, 32];
+                  const scales = [1, 0.95, 0.90];
+                  const opacities = [1, 0.85, 0.7];
+                  const zIndices = [30, 20, 10];
+
+                  const rotation = rotations[offset % rotations.length];
+                  const Y = translationsY[offset % translationsY.length];
+                  const scale = scales[offset % scales.length];
+                  const opacity = opacities[offset % opacities.length];
+                  const zIndex = zIndices[offset % zIndices.length];
+
+                  return (
+                    <motion.div
+                      key={index}
+                      style={{
+                        zIndex: zIndex,
+                        transformOrigin: 'bottom center',
+                      }}
+                      initial={{ opacity: 0, y: 50, rotate: 0 }}
+                      animate={{
+                        opacity: opacity,
+                        y: Y,
+                        rotate: rotation,
+                        scale: scale,
+                      }}
+                      whileHover={isTop ? {
+                        y: Y - 12,
+                        scale: 1.02,
+                        transition: { duration: 0.2 }
+                      } : {
+                        scale: scale + 0.02,
+                        transition: { duration: 0.2 }
+                      }}
+                      onClick={() => setActiveIndex(index)}
+                      transition={{
+                        type: 'spring',
+                        stiffness: 200,
+                        damping: 22,
+                      }}
+                      className={`absolute w-full max-w-[340px] aspect-[4/3] bg-warm-ivory p-6 rounded-2xl border border-warm-clay/80 shadow-md flex flex-col justify-between cursor-pointer select-none transition-shadow duration-300 ${isTop ? 'shadow-lg border-warm-clay' : 'hover:border-warm-clay/90'}`}
+                    >
+                      {/* Header */}
+                      <div className="flex justify-between items-start">
+                        <div className="w-10 h-10 rounded-full flex items-center justify-center bg-dark-charcoal/5 text-dark-charcoal border border-dark-charcoal/10">
+                          <ShieldCheck className="w-5 h-5 text-soft-terracotta" />
+                        </div>
+                        <span className="font-mono text-[9px] uppercase tracking-widest text-[#7F7B74]">
+                          ISSUED &bull; {cert.year}
+                        </span>
                       </div>
-                      <span className="font-mono text-[9px] uppercase tracking-widest text-[#7F7B74]">
-                        ISSUED &bull; {cert.year}
-                      </span>
-                    </div>
 
-                    {/* Middle Core Info */}
-                    <div className="space-y-1.5 py-4">
-                      <h4 className="font-serif text-base sm:text-lg leading-tight text-dark-charcoal font-medium">
-                        {cert.title}
-                      </h4>
-                      <p className="font-sans text-xs text-mid-tint italic">
-                        {cert.issuer}
-                      </p>
-                    </div>
+                      {/* Middle Core Info */}
+                      <div className="space-y-1.5 py-4">
+                        <h4 className="font-serif text-base sm:text-lg leading-tight text-dark-charcoal font-medium">
+                          {cert.title}
+                        </h4>
+                        <p className="font-sans text-xs text-mid-tint italic">
+                          {cert.issuer}
+                        </p>
+                      </div>
 
-                    {/* Bottom Status decoration */}
-                    <div className="flex items-center gap-1.5 border-t border-warm-clay/40 pt-3 text-left">
-                      <CheckCircle2 className="w-3.5 h-3.5 text-muted-olive" />
-                      <span className="font-mono text-[9px] tracking-widest uppercase font-semibold text-muted-olive">
-                        Verified Credentials Active
-                      </span>
+                      {/* Bottom Status decoration */}
+                      <div className="flex items-center gap-1.5 border-t border-warm-clay/40 pt-3 text-left">
+                        <CheckCircle2 className="w-3.5 h-3.5 text-muted-olive" />
+                        <span className="font-mono text-[9px] tracking-widest uppercase font-semibold text-muted-olive">
+                          Verified Credentials Active
+                        </span>
+                      </div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* Progress Dot Indicators */}
+              <div className="flex items-center gap-2.5 mt-8 z-40">
+                {CERTIFICATIONS.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveIndex(index)}
+                    className="group relative p-1.5 focus:outline-none"
+                    aria-label={`Go to certification ${index + 1}`}
+                  >
+                    <div className="relative w-2.5 h-2.5 rounded-full overflow-hidden">
+                      <div className={`absolute inset-0 rounded-full transition-all duration-500 ${activeIndex === index ? 'bg-soft-terracotta scale-100' : 'bg-warm-clay/60 scale-75 group-hover:bg-warm-clay group-hover:scale-100'}`} />
                     </div>
-                  </motion.div>
-                );
-              })}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
 
