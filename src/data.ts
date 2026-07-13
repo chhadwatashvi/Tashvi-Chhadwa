@@ -141,9 +141,7 @@ export const CASE_STUDIES: CaseStudy[] = [
 export const SKILLS = [
   "Creative Strategy", "Canva", "Figma", "Social Media Management",
   "Meta Ads Suite", "Google Analytics 4", "SEO Content Design",
-  "HubSpot Suite", "Mailchimp", "Pinterest Marketing",
-  "Copywriting", "CapCut", "LinkedIn Content Architecture",
-  "A/B Testing Studio", "Brand Positioning"
+  "HubSpot Suite", "Pinterest Marketing"
 ];
 
 export const CERTIFICATIONS = [

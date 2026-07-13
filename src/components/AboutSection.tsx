@@ -1,8 +1,14 @@
+import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, ArrowRight, Lightbulb } from 'lucide-react';
+import { Sparkles, ArrowRight, Lightbulb, Plus, Minus } from 'lucide-react';
 import { PERSONAL_INFO } from '../data';
 
 export default function AboutSection() {
+  const [expandedSection, setExpandedSection] = useState<string | null>('who-i-am');
+
+  const toggleSection = (id: string) => {
+    setExpandedSection(prev => (prev === id ? null : id));
+  };
   return (
     <section
       id="about"
@@ -82,38 +88,242 @@ export default function AboutSection() {
           </div>
 
           {/* Column 2: Core Methodology & Personality Traits */}
-          <div className="lg:col-span-7 space-y-12 text-left" id="about-right-side">
+          <div className="lg:col-span-7 space-y-6 text-left" id="about-right-side">
             
-            {/* Editorial Stories */}
-            <div className="space-y-8">
-              <div id="who-i-am">
-                <h4 className="font-serif text-xs uppercase tracking-widest font-semibold text-soft-terracotta mb-2">
-                  01 // Who I Am
+            {/* Editorial Stories - Interactive Accordion */}
+            <div className="space-y-5">
+              <div 
+                id="who-i-am"
+                className={`relative p-6 pr-14 rounded-2xl border transition-all duration-500 cursor-pointer overflow-hidden ${
+                  expandedSection === 'who-i-am' 
+                    ? 'bg-warm-beige border-warm-clay shadow-md' 
+                    : 'bg-warm-ivory/40 border-warm-clay/30 hover:border-warm-clay/60'
+                }`}
+                onClick={() => toggleSection('who-i-am')}
+              >
+                {/* Background decorative visual trace */}
+                {expandedSection === 'who-i-am' && (
+                  <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-soft-terracotta/5 rounded-full blur-xl pointer-events-none" />
+                )}
+
+                <h4 className="font-serif text-sm sm:text-base uppercase tracking-widest font-semibold text-soft-terracotta mb-2.5 select-none flex items-center gap-1.5">
+                  <span className="font-mono text-xs opacity-60">01 //</span> Who I Am
                 </h4>
-                <p className="text-dark-charcoal/85 text-base font-light leading-relaxed max-w-xl">
-                  {PERSONAL_INFO.brief}
-                </p>
+
+                <div className={`absolute top-6 right-6 w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 ${
+                  expandedSection === 'who-i-am' 
+                    ? 'border-soft-terracotta bg-soft-terracotta/10 text-soft-terracotta scale-105' 
+                    : 'border-warm-clay/50 text-[#7F7B74]'
+                }`}>
+                  {expandedSection === 'who-i-am' ? (
+                    <Minus className="w-4 h-4" />
+                  ) : (
+                    <Plus className="w-4 h-4" />
+                  )}
+                </div>
+
+                <motion.div 
+                  initial={false}
+                  animate={{ 
+                    height: expandedSection === 'who-i-am' ? 'auto' : '24px',
+                    opacity: expandedSection === 'who-i-am' ? 1 : 0.75
+                  }}
+                  transition={{ duration: 0.35, ease: 'easeInOut' }}
+                  className="overflow-hidden"
+                >
+                  <p className="text-dark-charcoal/85 text-xs sm:text-sm md:text-base font-light leading-relaxed max-w-xl cursor-pointer">
+                    {expandedSection === 'who-i-am' 
+                      ? "As a former design lead turned multi-channel growth strategist, I bridge the gap between creative execution and raw performance. I don't just build grids—I build visual engines that drive revenue."
+                      : "Creative strategist bridging the gap between artistic execution and performance growth."
+                    }
+                  </p>
+
+                  {/* Micro tagging chips */}
+                  {expandedSection === 'who-i-am' && (
+                    <motion.div 
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1, duration: 0.3 }}
+                      className="flex flex-wrap gap-2 mt-4 pt-4 border-t border-warm-clay/35"
+                    >
+                      <span className="px-2.5 py-1 text-[9px] font-mono uppercase tracking-wider bg-warm-ivory border border-warm-clay/40 text-[#7F7B74] rounded-full shadow-2xs">
+                        Growth Architect
+                      </span>
+                      <span className="px-2.5 py-1 text-[9px] font-mono uppercase tracking-wider bg-warm-ivory border border-warm-clay/40 text-[#7F7B74] rounded-full shadow-2xs">
+                        Art Direction
+                      </span>
+                      <span className="px-2.5 py-1 text-[9px] font-mono uppercase tracking-wider bg-warm-ivory border border-warm-clay/40 text-[#7F7B74] rounded-full shadow-2xs">
+                        Acquisition
+                      </span>
+                    </motion.div>
+                  )}
+                </motion.div>
               </div>
 
-              <div id="what-i-do">
-                <h4 className="font-serif text-xs uppercase tracking-widest font-semibold text-soft-terracotta mb-2">
-                  02 // What I Do
+              <div 
+                id="what-i-do"
+                className={`relative p-6 pr-14 rounded-2xl border transition-all duration-500 cursor-pointer overflow-hidden ${
+                  expandedSection === 'what-i-do' 
+                    ? 'bg-warm-beige border-warm-clay shadow-md' 
+                    : 'bg-warm-ivory/40 border-warm-clay/30 hover:border-warm-clay/60'
+                }`}
+                onClick={() => toggleSection('what-i-do')}
+              >
+                {/* Background decorative visual trace */}
+                {expandedSection === 'what-i-do' && (
+                  <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-muted-olive/5 rounded-full blur-xl pointer-events-none" />
+                )}
+
+                <h4 className="font-serif text-sm sm:text-base uppercase tracking-widest font-semibold text-soft-terracotta mb-2.5 select-none flex items-center gap-1.5">
+                  <span className="font-mono text-xs opacity-60">02 //</span> What I Do
                 </h4>
-                <p className="text-dark-charcoal/85 text-base font-light leading-relaxed max-w-xl">
-                  I act as a translator. I build creative strategies containing fully developed visual guidelines, copywriting models, and performance targets. Once set, I personally direct campaigns to hit, trace, and exceed key acquisition objectives.
-                </p>
+
+                <div className={`absolute top-6 right-6 w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 ${
+                  expandedSection === 'what-i-do' 
+                    ? 'border-soft-terracotta bg-soft-terracotta/10 text-soft-terracotta scale-105' 
+                    : 'border-warm-clay/50 text-[#7F7B74]'
+                }`}>
+                  {expandedSection === 'what-i-do' ? (
+                    <Minus className="w-4 h-4" />
+                  ) : (
+                    <Plus className="w-4 h-4" />
+                  )}
+                </div>
+
+                <motion.div 
+                  initial={false}
+                  animate={{ 
+                    height: expandedSection === 'what-i-do' ? 'auto' : '24px',
+                    opacity: expandedSection === 'what-i-do' ? 1 : 0.75
+                  }}
+                  transition={{ duration: 0.35, ease: 'easeInOut' }}
+                  className="overflow-hidden"
+                >
+                  <p className="text-dark-charcoal/85 text-xs sm:text-sm md:text-base font-light leading-relaxed max-w-xl cursor-pointer">
+                    {expandedSection === 'what-i-do' 
+                      ? "I act as a translator. I build creative strategies containing fully developed visual guidelines, copywriting models, and performance targets. Once set, I personally direct campaigns to hit, trace, and exceed key acquisition objectives."
+                      : "Translating brand identity into aesthetic digital pipelines and conversion engines."
+                    }
+                  </p>
+
+                  {/* Micro Process grid */}
+                  {expandedSection === 'what-i-do' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1, duration: 0.3 }}
+                      className="mt-5 pt-4 border-t border-warm-clay/35"
+                    >
+                      <p className="text-[9px] uppercase font-mono tracking-widest text-soft-terracotta mb-3">Creative Growth Pipeline</p>
+                      <div className="grid grid-cols-3 gap-2.5 text-center text-[10px] font-mono text-[#7F7B74]">
+                        <div className="bg-warm-ivory border border-warm-clay/40 p-2.5 rounded-xl flex flex-col justify-between h-14 shadow-2xs">
+                          <span className="font-bold text-dark-charcoal text-[11px]">01</span>
+                          <span className="text-[8px] tracking-wider uppercase font-semibold">CONCEPT</span>
+                        </div>
+                        <div className="bg-warm-ivory border border-warm-clay/40 p-2.5 rounded-xl flex flex-col justify-between h-14 shadow-2xs">
+                          <span className="font-bold text-dark-charcoal text-[11px]">02</span>
+                          <span className="text-[8px] tracking-wider uppercase font-semibold">DESIGN</span>
+                        </div>
+                        <div className="bg-warm-ivory border border-warm-clay/40 p-2.5 rounded-xl flex flex-col justify-between h-14 shadow-2xs">
+                          <span className="font-bold text-dark-charcoal text-[11px]">03</span>
+                          <span className="text-[8px] tracking-wider uppercase font-semibold">GROWTH</span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </motion.div>
               </div>
 
-              <div id="what-makes-me-different">
-                <h4 className="font-serif text-xs uppercase tracking-widest font-semibold text-soft-terracotta mb-2">
-                  03 // My DNA
+              <div 
+                id="what-makes-me-different"
+                className={`relative p-6 pr-14 rounded-2xl border transition-all duration-500 cursor-pointer overflow-hidden ${
+                  expandedSection === 'what-makes-me-different' 
+                    ? 'bg-warm-beige border-warm-clay shadow-md' 
+                    : 'bg-warm-ivory/40 border-warm-clay/30 hover:border-warm-clay/60'
+                }`}
+                onClick={() => toggleSection('what-makes-me-different')}
+              >
+                {/* Background decorative visual trace */}
+                {expandedSection === 'what-makes-me-different' && (
+                  <div className="absolute -right-4 -bottom-4 w-24 h-24 bg-soft-terracotta/5 rounded-full blur-xl pointer-events-none" />
+                )}
+
+                <h4 className="font-serif text-sm sm:text-base uppercase tracking-widest font-semibold text-soft-terracotta mb-2.5 select-none flex items-center gap-1.5">
+                  <span className="font-mono text-xs opacity-60">03 //</span> My DNA
                 </h4>
-                <p className="text-dark-charcoal/85 text-base font-light leading-relaxed max-w-xl">
-                  Unlike conventional agency teams that build cookie-cutter landing templates, my creative workflows operate like a high-end designer. I rely heavily on visual balance, textured color pallets, and deep emotional copy hooks.
-                </p>
+
+                <div className={`absolute top-6 right-6 w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 ${
+                  expandedSection === 'what-makes-me-different' 
+                    ? 'border-soft-terracotta bg-soft-terracotta/10 text-soft-terracotta scale-105' 
+                    : 'border-warm-clay/50 text-[#7F7B74]'
+                }`}>
+                  {expandedSection === 'what-makes-me-different' ? (
+                    <Minus className="w-4 h-4" />
+                  ) : (
+                    <Plus className="w-4 h-4" />
+                  )}
+                </div>
+
+                <motion.div 
+                  initial={false}
+                  animate={{ 
+                    height: expandedSection === 'what-makes-me-different' ? 'auto' : '24px',
+                    opacity: expandedSection === 'what-makes-me-different' ? 1 : 0.75
+                  }}
+                  transition={{ duration: 0.35, ease: 'easeInOut' }}
+                  className="overflow-hidden"
+                >
+                  <p className="text-dark-charcoal/85 text-xs sm:text-sm md:text-base font-light leading-relaxed max-w-xl cursor-pointer">
+                    {expandedSection === 'what-makes-me-different' 
+                      ? "Unlike conventional agency teams that build cookie-cutter templates, my creative workflows operate like a designer. I rely heavily on visual balance, textured color palettes, and deep emotional copy hooks."
+                      : "Merging editorial-grade design aesthetics with deep emotional copy hooks."
+                    }
+                  </p>
+
+                  {/* Dual Capability Matrix sliders */}
+                  {expandedSection === 'what-makes-me-different' && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.1, duration: 0.3 }}
+                      className="mt-5 pt-4 border-t border-warm-clay/35 space-y-3"
+                    >
+                      <p className="text-[9px] uppercase font-mono tracking-widest text-soft-terracotta">Dual Capability Matrix</p>
+                      <div className="space-y-2.5">
+                        <div>
+                          <div className="flex justify-between text-[9px] font-mono text-[#7F7B74] mb-1">
+                            <span className="font-semibold">AESTHETIC CRAFTSMANSHIP</span>
+                            <span className="font-bold text-dark-charcoal">95%</span>
+                          </div>
+                          <div className="h-1.5 bg-warm-clay/30 rounded-full overflow-hidden">
+                            <motion.div 
+                              initial={{ width: 0 }}
+                              animate={{ width: '95%' }}
+                              transition={{ duration: 0.8, ease: "easeOut" }}
+                              className="h-full bg-soft-terracotta rounded-full"
+                            />
+                          </div>
+                        </div>
+                        <div>
+                          <div className="flex justify-between text-[9px] font-mono text-[#7F7B74] mb-1">
+                            <span className="font-semibold">ANALYTICAL PERFORMANCE</span>
+                            <span className="font-bold text-dark-charcoal">90%</span>
+                          </div>
+                          <div className="h-1.5 bg-warm-clay/30 rounded-full overflow-hidden">
+                            <motion.div 
+                              initial={{ width: 0 }}
+                              animate={{ width: '90%' }}
+                              transition={{ duration: 0.8, ease: "easeOut" }}
+                              className="h-full bg-muted-olive rounded-full"
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                </motion.div>
               </div>
             </div>
-
 
           </div>
 

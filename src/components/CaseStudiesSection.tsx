@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Check, ArrowDown, ChevronRight, TrendingUp, Sparkles, Plus, Minus } from 'lucide-react';
+import { Check, ArrowDown, ChevronRight, TrendingUp, Sparkles, Plus, Minus, Leaf, BookOpen } from 'lucide-react';
 import { CASE_STUDIES } from '../data';
 
 export default function CaseStudiesSection() {
@@ -46,28 +46,43 @@ export default function CaseStudiesSection() {
                 {/* Main Card Header Area - Always Visible */}
                 <div
                   onClick={() => toggleExpand(study.id)}
-                  className="p-8 sm:p-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 cursor-pointer hover:bg-warm-clay/20 transition-all"
+                  className="p-8 sm:p-10 flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 cursor-pointer hover:bg-warm-clay/15 transition-all duration-300 relative group"
                   id={`case-card-header-${study.id}`}
                 >
-                  <div className="text-left space-y-3 max-w-2xl">
-                    <div className="flex items-center gap-2">
-                      <span className="inline-block px-3 py-1 bg-dark-charcoal/5 border border-dark-charcoal/10 rounded-full font-mono text-[9px] font-semibold text-mid-tint tracking-widest uppercase">
-                        {study.tag}
-                      </span>
-                      <span className="text-xs font-mono text-soft-terracotta font-semibold">0{idx + 1} // CASE</span>
+                  <div className="flex flex-col sm:flex-row items-start gap-5 max-w-2xl text-left">
+                    {/* Visual Case Icon Badge */}
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center shrink-0 border shadow-2xs group-hover:scale-105 transition-transform duration-300 ${
+                      study.id === 'cs1' 
+                        ? 'bg-[#E3E8E1] border-muted-olive/35 text-muted-olive shadow-muted-olive/5' 
+                        : 'bg-soft-terracotta/10 border-soft-terracotta/35 text-soft-terracotta shadow-soft-terracotta/5'
+                    }`}>
+                      {study.id === 'cs1' ? (
+                        <Leaf className="w-6 h-6 stroke-[1.75]" />
+                      ) : (
+                        <BookOpen className="w-6 h-6 stroke-[1.75]" />
+                      )}
                     </div>
 
-                    <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-dark-charcoal font-light leading-tight">
-                      {study.title}
-                    </h3>
+                    <div className="space-y-2.5">
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="inline-block px-3 py-1 bg-dark-charcoal/5 border border-dark-charcoal/10 rounded-full font-mono text-[9px] font-semibold text-mid-tint tracking-widest uppercase">
+                          {study.tag}
+                        </span>
+                        <span className="text-xs font-mono text-soft-terracotta font-semibold">0{idx + 1} // CASE STUDY</span>
+                      </div>
+
+                      <h3 className="font-serif text-2xl sm:text-3xl md:text-4xl text-dark-charcoal font-light leading-tight">
+                        {study.title}
+                      </h3>
+                    </div>
                   </div>
 
                   {/* Highlights/Prominent Metrics Preview */}
-                  <div className="flex flex-wrap items-center gap-3 w-full md:w-auto mt-2 md:mt-0">
+                  <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto mt-2 lg:mt-0 lg:self-center shrink-0">
                     {study.metrics.slice(0, 2).map((m, mIdx) => (
                       <div
                         key={mIdx}
-                        className="bg-warm-ivory px-4 py-2.5 rounded-full border border-warm-clay/50 text-xs font-serif font-semibold text-dark-charcoal flex items-center gap-1.5"
+                        className="bg-warm-ivory px-4 py-2.5 rounded-full border border-warm-clay/50 text-xs font-serif font-semibold text-dark-charcoal flex items-center gap-1.5 shadow-3xs"
                       >
                         <TrendingUp className="w-3.5 h-3.5 text-soft-terracotta" />
                         {m}
