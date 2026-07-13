@@ -71,9 +71,9 @@ export const SOCIAL_MEDIA_GRID: SocialMediaItem[] = [
   {
     id: "sm1",
     type: "instagram",
-    title: "Organic Rhythm Reel",
+    title: "New Product Launch",
     subtitle: "Reaching 45K views via warm, textured aesthetic storytelling.",
-    image: "/images/campaign_showcase_1_1782102995436.jpg",
+    image: "https://lh3.googleusercontent.com/d/1zYSOjJx7HB5gFesFcy_N9-eguk8xBRYP",
     frameStyle: "phone",
     aspectRatio: "9:16"
   },
