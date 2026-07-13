@@ -1,7 +1,120 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
-import { Award, ShieldCheck, CheckCircle2, Bookmark } from 'lucide-react';
+import {
+  Award,
+  ShieldCheck,
+  CheckCircle2,
+  Bookmark,
+  Sparkles,
+  Palette,
+  Figma,
+  Instagram,
+  Megaphone,
+  BarChart3,
+  Search,
+  Workflow,
+  Mail,
+  Pin,
+  PenTool,
+  Scissors,
+  Linkedin,
+  Split,
+  Compass
+} from 'lucide-react';
 import { SKILLS, CERTIFICATIONS } from '../data';
+
+const SKILL_LOGOS: Record<string, { icon: any; color: string; bgColor: string; label: string }> = {
+  "Creative Strategy": {
+    icon: Sparkles,
+    color: "text-amber-600",
+    bgColor: "bg-amber-500/5 hover:bg-amber-500/10 border-amber-500/20",
+    label: "Creative Strategy"
+  },
+  "Canva": {
+    icon: Palette,
+    color: "text-[#00C4CC]",
+    bgColor: "bg-[#00C4CC]/5 hover:bg-[#00C4CC]/10 border-[#00C4CC]/20",
+    label: "Canva Studio"
+  },
+  "Figma": {
+    icon: Figma,
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/5 hover:bg-orange-500/10 border-orange-500/20",
+    label: "Figma Pro"
+  },
+  "Social Media Management": {
+    icon: Instagram,
+    color: "text-[#E1306C]",
+    bgColor: "bg-[#E1306C]/5 hover:bg-[#E1306C]/10 border-[#E1306C]/20",
+    label: "Social Management"
+  },
+  "Meta Ads Suite": {
+    icon: Megaphone,
+    color: "text-[#1877F2]",
+    bgColor: "bg-[#1877F2]/5 hover:bg-[#1877F2]/10 border-[#1877F2]/20",
+    label: "Meta Ads"
+  },
+  "Google Analytics 4": {
+    icon: BarChart3,
+    color: "text-[#F4B400]",
+    bgColor: "bg-[#F4B400]/5 hover:bg-[#F4B400]/10 border-[#F4B400]/20",
+    label: "Google Analytics"
+  },
+  "SEO Content Design": {
+    icon: Search,
+    color: "text-emerald-600",
+    bgColor: "bg-emerald-500/5 hover:bg-emerald-500/10 border-emerald-500/20",
+    label: "SEO Content"
+  },
+  "HubSpot Suite": {
+    icon: Workflow,
+    color: "text-[#FF7A59]",
+    bgColor: "bg-[#FF7A59]/5 hover:bg-[#FF7A59]/10 border-[#FF7A59]/20",
+    label: "HubSpot CRM"
+  },
+  "Mailchimp": {
+    icon: Mail,
+    color: "text-[#FFE01B] filter brightness-75",
+    bgColor: "bg-[#FFE01B]/5 hover:bg-[#FFE01B]/10 border-[#FFE01B]/20",
+    label: "Mailchimp"
+  },
+  "Pinterest Marketing": {
+    icon: Pin,
+    color: "text-[#E60023]",
+    bgColor: "bg-[#E60023]/5 hover:bg-[#E60023]/10 border-[#E60023]/20",
+    label: "Pinterest"
+  },
+  "Copywriting": {
+    icon: PenTool,
+    color: "text-indigo-600",
+    bgColor: "bg-indigo-500/5 hover:bg-indigo-500/10 border-indigo-500/20",
+    label: "Copywriting"
+  },
+  "CapCut": {
+    icon: Scissors,
+    color: "text-cyan-500",
+    bgColor: "bg-cyan-500/5 hover:bg-cyan-500/10 border-cyan-500/20",
+    label: "CapCut Video"
+  },
+  "LinkedIn Content Architecture": {
+    icon: Linkedin,
+    color: "text-[#0077B5]",
+    bgColor: "bg-[#0077B5]/5 hover:bg-[#0077B5]/10 border-[#0077B5]/20",
+    label: "LinkedIn Arch."
+  },
+  "A/B Testing Studio": {
+    icon: Split,
+    color: "text-violet-600",
+    bgColor: "bg-violet-500/5 hover:bg-violet-500/10 border-violet-500/20",
+    label: "A/B Testing"
+  },
+  "Brand Positioning": {
+    icon: Compass,
+    color: "text-rose-600",
+    bgColor: "bg-rose-500/5 hover:bg-rose-500/10 border-rose-500/20",
+    label: "Brand Positioning"
+  }
+};
 
 export default function SkillsCertificationsSection() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -43,7 +156,7 @@ export default function SkillsCertificationsSection() {
         {/* Competency Content Grid: Pills vs Stacks */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start text-left">
           
-          {/* Left Column: Pill-shaped Skills Cloud */}
+          {/* Left Column: Grid of Brand App Logos */}
           <div className="lg:col-span-7 space-y-6" id="skills-pill-col">
             <div className="flex items-center gap-2 mb-2">
               <Bookmark className="w-5 h-5 text-soft-terracotta" />
@@ -52,16 +165,37 @@ export default function SkillsCertificationsSection() {
               </h3>
             </div>
 
-            <div className="flex flex-wrap gap-3.5" id="skills-pill-container">
-              {SKILLS.map((skill, index) => (
-                <div
-                  key={index}
-                  className="px-5 py-3 bg-warm-ivory text-xs font-semibold text-dark-charcoal tracking-wide rounded-full border border-warm-clay/55 shadow-xs hover:border-soft-terracotta hover:bg-dark-charcoal hover:sticky hover:text-warm-beige transform hover:scale-103 transition-all duration-300 cursor-default"
-                  id={`skill-pill-${index}`}
-                >
-                  {skill}
-                </div>
-              ))}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-4" id="skills-pill-container">
+              {SKILLS.map((skill, index) => {
+                const config = SKILL_LOGOS[skill] || {
+                  icon: Bookmark,
+                  color: "text-dark-charcoal",
+                  bgColor: "bg-dark-charcoal/5 border-dark-charcoal/15",
+                  label: skill
+                };
+                const IconComponent = config.icon;
+
+                return (
+                  <motion.div
+                    key={index}
+                    whileHover={{ scale: 1.03, y: -2 }}
+                    className={`p-4 rounded-2xl border ${config.bgColor} shadow-xs hover:shadow-md flex flex-col items-center justify-center text-center gap-3 bg-warm-ivory/80 cursor-default transition-all duration-300`}
+                    id={`skill-pill-${index}`}
+                  >
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center bg-warm-beige/80 border border-warm-clay/40 ${config.color} shadow-inner`}>
+                      <IconComponent className="w-6 h-6 stroke-[2]" />
+                    </div>
+                    <div className="space-y-0.5">
+                      <span className="block text-xs font-semibold text-dark-charcoal tracking-tight leading-tight">
+                        {config.label}
+                      </span>
+                      <span className="block text-[8px] font-mono uppercase tracking-wider text-[#7F7B74]">
+                        TOOL &bull; PLATFORM
+                      </span>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
 
