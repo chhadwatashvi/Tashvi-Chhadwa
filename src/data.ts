@@ -82,7 +82,7 @@ export const SOCIAL_MEDIA_GRID: SocialMediaItem[] = [
     type: "linkedin",
     title: "Mindset Deconstruction",
     subtitle: "A structured carousel detailing marketing psychology. 2.4k shares.",
-    image: "/images/campaign_showcase_2_1782103011672.jpg",
+    image: "https://lh3.googleusercontent.com/d/1CVh9uNw-Mg9zlDttSliIDWAHrkv2KXmG",
     frameStyle: "phone",
     aspectRatio: "9:16"
   },
@@ -109,7 +109,7 @@ export const SOCIAL_MEDIA_GRID: SocialMediaItem[] = [
     type: "video",
     title: "Brand Auditing Framework",
     subtitle: "Explaining strategic positioning on-camera for aspiring creative leads.",
-    image: "/images/marketer_portrait_1782102978826.jpg",
+    image: "https://lh3.googleusercontent.com/d/1xS2kks99HTLsH7hFFRIgrhhZL8SMyB2Y",
     frameStyle: "phone",
     aspectRatio: "9:16"
   }
