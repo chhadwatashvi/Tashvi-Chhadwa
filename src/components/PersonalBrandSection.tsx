@@ -92,7 +92,7 @@ export default function PersonalBrandSection() {
             {/* Visual Workspace Inspiration block */}
             <div className="relative group rounded-[2.5rem] overflow-hidden border border-warm-clay/70 aspect-[4/3] bg-warm-clay/40 shadow-md">
               <img
-                src="/images/campaign_showcase_2_1782103011672.jpg"
+                src="https://lh3.googleusercontent.com/d/19lY4EISc7YvUzCKB8SZ4WJfuzv56fbTt"
                 alt="Workspace and architectural design aesthetic mockup"
                 referrerPolicy="no-referrer"
                 className="w-full h-full object-cover grayscale opacity-95 group-hover:scale-103 group-hover:grayscale-0 transition-all duration-700"
