@@ -110,7 +110,7 @@ export default function HeroSection() {
           >
             {/* The Professional Image */}
             <img
-              src="/images/marketer_portrait_1782102978826.jpg"
+              src="https://lh3.googleusercontent.com/d/11TjkP9O8m3rBDCnkgck79Kj3rBWzbKXo"
               alt="Tashvi Chhadwa Marketing Specialist"
               referrerPolicy="no-referrer"
               className="w-full h-full object-cover grayscale-15 group-hover:grayscale-0 transition-all duration-1000 scale-102 group-hover:scale-105"
