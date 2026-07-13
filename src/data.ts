@@ -80,7 +80,7 @@ export const SOCIAL_MEDIA_GRID: SocialMediaItem[] = [
   {
     id: "sm2",
     type: "linkedin",
-    title: "Mindset Deconstruction",
+    title: "Photobook Launch",
     subtitle: "A structured carousel detailing marketing psychology. 2.4k shares.",
     image: "https://lh3.googleusercontent.com/d/1CVh9uNw-Mg9zlDttSliIDWAHrkv2KXmG",
     frameStyle: "phone",
@@ -89,25 +89,25 @@ export const SOCIAL_MEDIA_GRID: SocialMediaItem[] = [
   {
     id: "sm3",
     type: "campaign-showcase",
-    title: "Vespera Skincare Launch",
-    subtitle: "Coordinating a luxury product launch utilizing heavy shadows and linen textures.",
-    image: "/images/campaign_showcase_1_1782102995436.jpg",
+    title: "Graduation Farewell Memento",
+    subtitle: "A farewell momento for all the dear graduates with every emotion captured beautifully.",
+    image: "https://lh3.googleusercontent.com/d/1-SxVwJYcNKJFTN9XdnxrftonvB5VcHeg",
     frameStyle: "large-showcase",
     aspectRatio: "16:10"
   },
   {
     id: "sm4",
     type: "carousel",
-    title: "Visual Hierarchy Guide",
+    title: "Influencer Collaboration Carousel",
     subtitle: "Educational Instagram slide decks with an 8.4% engagement rate.",
-    image: "/images/campaign_showcase_2_1782103011672.jpg",
+    image: "https://lh3.googleusercontent.com/d/1S5jn3Z0XKu6KouaUxm077ABuMYgh8hKC",
     frameStyle: "laptop",
     aspectRatio: "16:10"
   },
   {
     id: "sm5",
     type: "video",
-    title: "Brand Auditing Framework",
+    title: "Baby Memories Captured In A Book",
     subtitle: "Explaining strategic positioning on-camera for aspiring creative leads.",
     image: "https://lh3.googleusercontent.com/d/1xS2kks99HTLsH7hFFRIgrhhZL8SMyB2Y",
     frameStyle: "phone",

@@ -195,7 +195,7 @@ function LargeShowcaseMockup({ item }: { item: typeof SOCIAL_MEDIA_GRID[0] }) {
 
         <div className="absolute bottom-8 left-8 right-8 text-left">
           <span className="text-[10px] font-mono tracking-widest text-muted-olive uppercase font-bold bg-muted-olive/10 px-3 py-1 rounded-full border border-muted-olive/20 leading-none">
-            Selected Campaign Showcase // Vespera skincare
+            Featured Showcase // Portfolio
           </span>
           <h4 className="font-serif text-3xl sm:text-4xl text-warm-beige leading-none mt-3.5 mb-2 font-normal">
             {item.title}
